@@ -1,12 +1,16 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import CharacterCreator from './components/CharacterCreator/CharacterCreator';
+import { Link } from 'react-router-dom';
 
 function App() {
   return (
     <div className="App">
-      <CharacterCreator />
+      <h1>OSE Character Vault</h1>
+      <nav>
+        <Link to="/chargen">Character Creator</Link> |{" "}
+
+      </nav>
+      {/* <CharacterCreator /> */}
     </div>
   );
 }
