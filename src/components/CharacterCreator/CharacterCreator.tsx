@@ -12,7 +12,6 @@ import ChooseEquipment from './ChooseEquipment';
 
 const CharacterCreator = () => {
 
-  const [charSheet, setCharSheet ] = useState(defaultCharSheet);
   const [formStep, setFormStep] = useState(0)
   
   const displayFormStep = (formStep: number) => {
@@ -20,11 +19,11 @@ const CharacterCreator = () => {
       case 0:
         return <CharGenOptions  />;
       case 1:
-        return <AbilityScoreGen charSheet={charSheet} setCharSheet={setCharSheet}  />;
+        return <AbilityScoreGen   />;
       case 2:
         return <ChooseClass  />;
       case 3:
-        return <HitPointGen charSheet={charSheet} setCharSheet={setCharSheet}  />;
+        return <HitPointGen  />;
       case 4:
         return <AlignmentAndLanguages  />;
       case 5:
@@ -39,9 +38,8 @@ const CharacterCreator = () => {
   return (
     <div className="App">
                 
-
       <Formik
-        initialValues={charSheet}
+        initialValues={defaultCharSheet}
         onSubmit={(values, actions) => {
           console.log({ values, actions });
           alert(JSON.stringify(values, null, 2));
@@ -51,8 +49,7 @@ const CharacterCreator = () => {
 
       >
         <Form>
-          <label htmlFor="firstName">Name</label>
-          <Field id="name" name="name" placeholder="Name" />
+          
           {displayFormStep(formStep)}
         </Form>
       </Formik>

@@ -1,10 +1,5 @@
 import React, { useState } from 'react';
-import defaultCharSheet from './defaultCharSheet';
 import { Field, Form, Formik } from 'formik';
-import { AbilityScores } from '../../types';
-
-let chance = require('chance').Chance();
-
 
 
 const CharGenOptions = () => {

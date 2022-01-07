@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
-import defaultCharSheet from './defaultCharSheet';
-import { Field, Form, Formik } from 'formik';
-import { AbilityScores } from '../../types';
+import { Field, Form, Formik, useFormikContext } from 'formik';
 
 let chance = require('chance').Chance();
 
 
-
 const HitPointGen = (props: any) => {
+
+    // returns all values and methods from your Formik tag
+    const formikProps = useFormikContext()
+
+    console.log(formikProps)
 
     const [hasRolledHP, setHasRolledHP] = useState(false)
 
@@ -24,9 +26,11 @@ const HitPointGen = (props: any) => {
         else { return 0 }
     }
 
-
+    const values:any= formikProps.values;
 
     const randStartingHitPoints = (con: number, charClass: string) =>  {
+
+        console.log(con, charClass);
 
         let hitDie: string = `1d4`;
 
@@ -52,20 +56,27 @@ const HitPointGen = (props: any) => {
             hitDie = '1d4' ; 
         }
 
-        const rolledHP = chance.rpg(hitDie);
+        const rolledHP = chance.rpg(hitDie, {sum: true});
+        console.log(rolledHP)
 
-        rolledHP < 1 ? randStartingHitPoints(con, charClass) : props.setCharSheet({ ...props.charSheet, hp: rolledHP })
+        if (rolledHP + getConMod(con) < 1) {
+            randStartingHitPoints(con, charClass);
+        }
+        else {
+            formikProps.setFieldValue("hp", rolledHP);
+            formikProps.setFieldTouched("hp", true)
+        }
+       
     }
-
 
     return (
         <div>
 
             <p>Starting Hit Points</p>
-            <button type="button" onClick={() => console.log('number here')}>Roll Starting Hit Points</button>
+            <button type="button" onClick={() => randStartingHitPoints(values.abilityScores.con, values.class)}>Roll Starting Hit Points</button>
 
             <label htmlFor="hp">Hit Points</label>
-            <Field disabled={!hasRolledHP} type="number" min="1" id="hp" name="hp"  />
+            <Field disabled={true} type="number" min="1" id="hp" name="hp"  />
 
         </div>
     )

@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import defaultCharSheet from './defaultCharSheet';
 import { Field, Form, Formik } from 'formik';
-import { AbilityScores } from '../../types';
 
 const languageArr: Array<string> = [
     "Bugbear",
@@ -32,6 +30,8 @@ const AlignmentAndLanguages = () => {
         <div>
 
             <p>Alignment and Languages</p>
+            <label htmlFor="firstName">Name</label>
+            <Field id="name" name="name" placeholder="Name" />
 
             <label htmlFor="alignment">Alignment</label>
             <Field as="select" name="alignment">
@@ -40,24 +40,18 @@ const AlignmentAndLanguages = () => {
                 <option value="chaotic">Chaotic</option>
             </Field>
 
+            <p>Languages</p>
             <div role="group" aria-labelledby="checkbox-group">
-                
             {
                 languageArr.map(language => (
                     <label>
-                        <Field type="checkbox" name="languages" value={language} />
+                        <Field type="Checkbox" key={language} name="languages" value={language} />
                         {language}
                     </label>
                 ))
             }
             </div>
 
-            <label htmlFor="languages">Languages</label>
-            <Field as="checkbox" name="languages">
-                <option value="lawful">Lawful</option>
-                <option value="neutral">Neutral</option>
-                <option value="chaotic">Chaotic</option>
-            </Field>
         </div>
     )
 }

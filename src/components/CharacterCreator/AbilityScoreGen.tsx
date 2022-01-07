@@ -1,35 +1,37 @@
 import React, { useState } from 'react';
-import defaultCharSheet from './defaultCharSheet';
-import { Field, Form, Formik,  } from 'formik';
+import { Field, Form, Formik, useFormikContext,  } from 'formik';
 import { AbilityScores } from '../../types';
 
 let chance = require('chance').Chance();
 
 const AbilityScoreGen = (props: any) => {
 
+    // returns all values and methods from your Formik tag
+    const formikProps = useFormikContext()
+
     const [hasRolledScores, setHasRolledScores] = useState(false)
 
-  const randAbilityScore = () =>  chance.rpg(`3d6`, {sum: true});
+    const rollAbilityScores = () => {
 
-  const rollAbilityScores = () => {
+        const randAbilityScore = () =>  chance.rpg(`3d6`, {sum: true});
 
-    let newScores: AbilityScores = {
-        str: randAbilityScore(),
-        dex: randAbilityScore(),
-        con: randAbilityScore(),
-        int: randAbilityScore(),
-        wis: randAbilityScore(),
-        cha: randAbilityScore(),
+        let newScores: AbilityScores = {
+            str: randAbilityScore(),
+            dex: randAbilityScore(),
+            con: randAbilityScore(),
+            int: randAbilityScore(),
+            wis: randAbilityScore(),
+            cha: randAbilityScore(),
+        }
+        console.log(newScores)
+
+        formikProps.setFieldValue("abilityScores", newScores)
+
+        if (!hasRolledScores) {
+            setHasRolledScores(true)
+        }
+
     }
-    console.log(newScores)
-
-    props.setCharSheet({ ...props.charSheet, abilityScores: newScores })
-
-    if (!hasRolledScores) {
-    setHasRolledScores(true)
-    }
-
-  }
 
     return (
         <div>
