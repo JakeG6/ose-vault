@@ -7,9 +7,7 @@ let chance = require('chance').Chance();
 const AbilityScoreGen = (props: any) => {
 
     // returns all values and methods from your Formik tag
-    const formikProps = useFormikContext()
-
-    const [hasRolledScores, setHasRolledScores] = useState(false)
+    const formikProps = useFormikContext();
 
     const rollAbilityScores = () => {
 
@@ -27,8 +25,8 @@ const AbilityScoreGen = (props: any) => {
 
         formikProps.setFieldValue("abilityScores", newScores)
 
-        if (!hasRolledScores) {
-            setHasRolledScores(true)
+        if (!props.pageData.hasRolledScores) {
+            props.setPageData({...props.pageData, hasRolledScores: true})
         }
 
     }
@@ -36,21 +34,21 @@ const AbilityScoreGen = (props: any) => {
     return (
         <div>
 
-            <p>Ability Score</p>
+            <p>Ability Scores</p>
             <button type="button" onClick={() => rollAbilityScores()}>Roll Ability Scores</button>
             <div>
                 <label htmlFor="abilityScores.str">Strength</label>
-                <Field disabled={!hasRolledScores} type="number" min="3" id="str" name="abilityScores.str"  />
+                <Field disabled={!props.pageData.hasRolledScores} type="number" min="3" id="str" name="abilityScores.str"  />
                 <label htmlFor="abilityScores.dex">Dexterity</label>
-                <Field disabled={!hasRolledScores} type="number" min="3" id="dex" name="abilityScores.dex"  />
+                <Field disabled={!props.pageData.hasRolledScores} type="number" min="3" id="dex" name="abilityScores.dex"  />
                 <label htmlFor="abilityScores.con">Constitution</label>
-                <Field disabled={!hasRolledScores} type="number" min="3" id="con" name="abilityScores.con"  />
+                <Field disabled={!props.pageData.hasRolledScores} type="number" min="3" id="con" name="abilityScores.con"  />
                 <label htmlFor="abilityScores.int">Intelligence</label>
-                <Field disabled={!hasRolledScores} type="number" min="3" id="int" name="abilityScores.int"  />
+                <Field disabled={!props.pageData.hasRolledScores} type="number" min="3" id="int" name="abilityScores.int"  />
                 <label htmlFor="abilityScores.wis">Wisdom</label>
-                <Field disabled={!hasRolledScores} type="number" min="3" id="wis" name="abilityScores.wis"  />
+                <Field disabled={!props.pageData.hasRolledScores} type="number" min="3" id="wis" name="abilityScores.wis"  />
                 <label htmlFor="abilityScores.cha">Charisma</label>
-                <Field disabled={!hasRolledScores} type="number" min="3" id="cha" name="abilityScores.cha"  />
+                <Field disabled={!props.pageData.hasRolledScores} type="number" min="3" id="cha" name="abilityScores.cha"  />
             </div>
             <div>
                 <p>Ability Score Blurb goes here</p>

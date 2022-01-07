@@ -12,18 +12,19 @@ import ChooseEquipment from './ChooseEquipment';
 
 const CharacterCreator = () => {
 
-  const [formStep, setFormStep] = useState(0)
+  const [formStep, setFormStep] = useState<number>(0)
+  const [pageData, setPageData] = useState({hasRolledScores: false, hasRolledHP: false})
   
   const displayFormStep = (formStep: number) => {
     switch (formStep) {
       case 0:
         return <CharGenOptions  />;
       case 1:
-        return <AbilityScoreGen   />;
+        return <AbilityScoreGen pageData={pageData} setPageData={setPageData}   />;
       case 2:
         return <ChooseClass  />;
       case 3:
-        return <HitPointGen  />;
+        return <HitPointGen pageData={pageData} setPageData={setPageData}  />;
       case 4:
         return <AlignmentAndLanguages  />;
       case 5:

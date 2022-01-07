@@ -7,11 +7,9 @@ let chance = require('chance').Chance();
 const HitPointGen = (props: any) => {
 
     // returns all values and methods from your Formik tag
-    const formikProps = useFormikContext()
+    const formikProps = useFormikContext();
 
-    console.log(formikProps)
-
-    const [hasRolledHP, setHasRolledHP] = useState(false)
+    const values:any= formikProps.values;
 
     const getConMod = (con: number) => {
         if (con === 3) {
@@ -25,8 +23,6 @@ const HitPointGen = (props: any) => {
         else if (con >= 18) { return 3 }
         else { return 0 }
     }
-
-    const values:any= formikProps.values;
 
     const randStartingHitPoints = (con: number, charClass: string) =>  {
 
@@ -64,19 +60,23 @@ const HitPointGen = (props: any) => {
         }
         else {
             formikProps.setFieldValue("hp", rolledHP);
-            formikProps.setFieldTouched("hp", true)
+            props.setPageData({...props.pageData, hasRolledHP: true});
         }
        
     }
 
     return (
         <div>
-
             <p>Starting Hit Points</p>
             <button type="button" onClick={() => randStartingHitPoints(values.abilityScores.con, values.class)}>Roll Starting Hit Points</button>
-
             <label htmlFor="hp">Hit Points</label>
-            <Field disabled={true} type="number" min="1" id="hp" name="hp"  />
+            <Field 
+                disabled={!props.pageData.hasRolledHP} 
+                type="number" 
+                min={Math.max(1, 1 + getConMod(values.abilityScores.con))} 
+                id="hp" 
+                name="hp"  
+            />
 
         </div>
     )
