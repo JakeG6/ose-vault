@@ -6,7 +6,8 @@ const defaultCharSheet: CharSheet = {
     title: '',
     level: 1,
     alignment: 'neutral',
-    ac: 0,
+    languages: ['common'],
+    ac: 9,
     hp: 1,
     abilityScores: {
         str: 10,

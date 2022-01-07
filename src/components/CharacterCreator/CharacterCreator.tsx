@@ -1,45 +1,39 @@
 import React, { useState } from 'react';
 import defaultCharSheet from './defaultCharSheet';
 import { Field, Form, Formik } from 'formik';
-import { AbilityScores } from '../../types';
+import AbilityScoreGen from './AbilityScoreGen';
+import ChooseClass from './ChooseClass';
+import HitPointGen from './HitPointGen';
+import AlignmentAndLanguages from './AlignmentAndLanguages';
+import CharGenOptions from './CharGenOptions';
+import CharSummary from './CharSummary';
+import ChooseEquipment from './ChooseEquipment';
 
-let chance = require('chance').Chance();
 
 const CharacterCreator = () => {
 
   const [charSheet, setCharSheet ] = useState(defaultCharSheet);
-
-  const [hasRolledScores, setHasRolledScores] = useState(false)
-
-  const randAbilityScore = () =>  chance.rpg(`3d6`, {sum: true});
-
-  const rollAbilityScores = () => {
-      console.log('rolling')
-
-      console.log(randAbilityScore)
-
-      let newScores: AbilityScores = {
-        str: randAbilityScore(),
-          dex: randAbilityScore(),
-          con: randAbilityScore(),
-          int: randAbilityScore(),
-          wis: randAbilityScore(),
-          cha: randAbilityScore(),
-      }
-      console.log(newScores)
-
-      setCharSheet({
-        ...charSheet,
-        abilityScores: newScores
-      }
-      )
-
-      if (!hasRolledScores) {
-        setHasRolledScores(true)
-      }
-
-      console.log(charSheet)
-
+  const [formStep, setFormStep] = useState(0)
+  
+  const displayFormStep = (formStep: number) => {
+    switch (formStep) {
+      case 0:
+        return <CharGenOptions  />;
+      case 1:
+        return <AbilityScoreGen charSheet={charSheet} setCharSheet={setCharSheet}  />;
+      case 2:
+        return <ChooseClass  />;
+      case 3:
+        return <HitPointGen charSheet={charSheet} setCharSheet={setCharSheet}  />;
+      case 4:
+        return <AlignmentAndLanguages  />;
+      case 5:
+        return <ChooseEquipment  />;
+      case 6:
+        return <CharSummary  />;
+      default:
+        return <div>Not Found</div>;
+    }
   }
 
   return (
@@ -59,43 +53,11 @@ const CharacterCreator = () => {
         <Form>
           <label htmlFor="firstName">Name</label>
           <Field id="name" name="name" placeholder="Name" />
-
-          <p>ability scores</p>
-          <button type="button" onClick={() => rollAbilityScores()}>Roll Ability Scores</button>
-          
-          <label htmlFor="abilityScores.str">Strength</label>
-          <Field disabled={!hasRolledScores} type="number" min="3" id="str" name="abilityScores.str"  />
-          <label htmlFor="abilityScores.dex">Dexterity</label>
-          <Field disabled={!hasRolledScores} type="number" min="3" id="dex" name="abilityScores.dex"  />
-          <label htmlFor="abilityScores.con">Constitution</label>
-          <Field disabled={!hasRolledScores} type="number" min="3" id="con" name="abilityScores.con"  />
-          <label htmlFor="abilityScores.int">Intelligence</label>
-          <Field disabled={!hasRolledScores} type="number" min="3" id="int" name="abilityScores.int"  />
-          <label htmlFor="abilityScores.wis">Wisdom</label>
-          <Field disabled={!hasRolledScores} type="number" min="3" id="wis" name="abilityScores.wis"  />
-          <label htmlFor="abilityScores.cha">Charisma</label>
-          <Field disabled={!hasRolledScores} type="number" min="3" id="cha" name="abilityScores.cha"  />
-
-          <p>Character Class</p>
-
-          <label htmlFor="class">Class</label>
-          <Field as="select" name="class">
-            <option value="cleric">Cleric</option>
-            <option value="dwarf">Dwarf</option>
-            <option value="elf">Elf</option>
-            <option value="fighter">Fighter</option>
-            <option value="halfling">Halfling</option>
-            <option value="magic-user">Magic-User</option>
-            <option value="thief">Thief</option>
-          </Field>
-
-          <p>Hit Points</p>
-
-          <button type="button" onClick={() => console.log('good job)')} >Roll Hit Points</button>
-
-          <button type="submit">Submit</button>
+          {displayFormStep(formStep)}
         </Form>
       </Formik>
+      { formStep !== 0 ? <div onClick={() => setFormStep(formStep - 1)}>back</div> : <div></div> }
+      { formStep + 1 !== 7 ? <div onClick={() => setFormStep(formStep + 1)}>next</div> : <div></div> }
     </div>
   );
 

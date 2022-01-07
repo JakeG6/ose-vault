@@ -7,6 +7,11 @@ interface AbilityScores {
     cha: number
 }
 
+interface Gear {
+    name: string,
+    cost: number,
+}
+
 interface Armor {
     name: string,
     AC: number,
@@ -20,6 +25,7 @@ interface CharSheet {
     title: string,
     level: number,
     alignment: string,
+    languages: Array<string>
     ac: number,
     hp: number,
     abilityScores: AbilityScores
@@ -36,6 +42,7 @@ interface Weapon {
 export { 
     AbilityScores, 
     Armor,
+    Gear,
     CharSheet,
     Weapon
 }
