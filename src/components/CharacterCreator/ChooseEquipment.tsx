@@ -4,7 +4,7 @@ import { Field, Form, Formik } from 'formik';
 
 
 
-const CharSummary = () => {
+const ChooseEquipment = () => {
 
 
     return (
@@ -12,4 +12,4 @@ const CharSummary = () => {
     )
 }
 
-export default CharSummary;
+export default ChooseEquipment;

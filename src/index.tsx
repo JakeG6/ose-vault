@@ -10,10 +10,7 @@ import CharacterCreator from './components/CharacterCreator/CharacterCreator';
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="chargen" element={<CharacterCreator />} />
-      </Routes>
+      <App />
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')

@@ -37,7 +37,7 @@ const CharacterCreator = () => {
   }
 
   return (
-    <div className="App">
+    <div className="px-8 bg-cyan-200 ">
                 
       <Formik
         initialValues={defaultCharSheet}
@@ -50,12 +50,16 @@ const CharacterCreator = () => {
 
       >
         <Form>
+          <div className="">
+            {displayFormStep(formStep)}
+          </div>
           
-          {displayFormStep(formStep)}
         </Form>
       </Formik>
-      { formStep !== 0 ? <div onClick={() => setFormStep(formStep - 1)}>back</div> : <div></div> }
-      { formStep + 1 !== 7 ? <div onClick={() => setFormStep(formStep + 1)}>next</div> : <div></div> }
+      <div className="flex justify-between">
+        { formStep !== 0 ? <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={() => setFormStep(formStep - 1)}>back</button> : <div></div> }
+        { formStep + 1 !== 7 ? <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={() => setFormStep(formStep + 1)}>next</button> : <div></div> }
+      </div>
     </div>
   );
 
