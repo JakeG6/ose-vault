@@ -13,7 +13,8 @@ import ChooseEquipment from './ChooseEquipment';
 const CharacterCreator = () => {
 
   const [formStep, setFormStep] = useState<number>(0)
-  const [pageData, setPageData] = useState({hasRolledScores: false, hasRolledHP: false})
+  const [pageData, setPageData] = useState({
+    hasRolledScores: false, hasRolledHP: false, hasRolledGP: false})
   
   const displayFormStep = (formStep: number) => {
     switch (formStep) {
@@ -28,7 +29,7 @@ const CharacterCreator = () => {
       case 4:
         return <AlignmentAndLanguages  />;
       case 5:
-        return <ChooseEquipment  />;
+        return <ChooseEquipment pageData={pageData} setPageData={setPageData}  />;
       case 6:
         return <CharSummary  />;
       default:

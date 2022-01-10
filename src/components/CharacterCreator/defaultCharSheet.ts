@@ -16,6 +16,13 @@ const defaultCharSheet: CharSheet = {
         int: 10,
         wis: 10,
         cha: 10
+    },
+    charMoney: {
+        cp: 0,
+        sp: 0,
+        gp: 0,
+        ep: 0,
+        pp: 0
     }
  
 }

@@ -19,6 +19,15 @@ interface Armor {
     weight: number
 }
 
+interface CharMoney {
+    
+    cp: number,
+    sp: number,
+    gp: number,
+    ep: number,
+    pp: number
+}
+
 interface CharSheet {
     name: string,
     class: string,
@@ -28,7 +37,8 @@ interface CharSheet {
     languages: Array<string>
     ac: number,
     hp: number,
-    abilityScores: AbilityScores
+    abilityScores: AbilityScores,
+    charMoney: CharMoney
 }
 
 interface Weapon {
