@@ -38,7 +38,8 @@ interface CharSheet {
     ac: number,
     hp: number,
     abilityScores: AbilityScores,
-    charMoney: CharMoney
+    charMoney: CharMoney,
+    equipment: (Gear|Weapon|Armor)[]
 }
 
 interface Weapon {

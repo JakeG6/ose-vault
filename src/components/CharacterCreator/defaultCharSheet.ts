@@ -10,12 +10,12 @@ const defaultCharSheet: CharSheet = {
     ac: 9,
     hp: 1,
     abilityScores: {
-        str: 10,
-        dex: 10,
-        con: 10,
-        int: 10,
-        wis: 10,
-        cha: 10
+        str: 3,
+        dex: 3,
+        con: 3,
+        int: 3,
+        wis: 3,
+        cha: 3
     },
     charMoney: {
         cp: 0,
@@ -23,7 +23,8 @@ const defaultCharSheet: CharSheet = {
         gp: 0,
         ep: 0,
         pp: 0
-    }
+    },
+    equipment: []
  
 }
 

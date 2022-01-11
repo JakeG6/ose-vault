@@ -33,7 +33,6 @@ const AbilityScoreGen = (props: any) => {
 
     return (
         <div>
-
             <p className="text-3xl font-bold underline">Ability Scores</p>
             <button type="button" onClick={() => rollAbilityScores()} className='rounded-none bg-green-50'>
                 Roll Ability Scores
@@ -57,7 +56,6 @@ const AbilityScoreGen = (props: any) => {
                     <div>
                         <label htmlFor="abilityScores.int">Intelligence</label>
                         <Field className="w-10" disabled={!props.pageData.hasRolledScores} type="number" min="3" id="int" name="abilityScores.int"  />
-
                     </div>
                     <div>
                         <label htmlFor="abilityScores.wis">Wisdom</label>
@@ -73,10 +71,7 @@ const AbilityScoreGen = (props: any) => {
                 <div className="bg-fuchsia-200" >
                     <p>Ability Score Blurb goes here</p>
                 </div>
-                
-                
             </div>
-            
         </div>
     )
 }
