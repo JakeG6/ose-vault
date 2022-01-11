@@ -1,8 +1,11 @@
 import { Gear } from "./types";
 
 const gear: Array<Gear> = [
+    {name: "Arrow (20)",  cost: 5},
     {name: "Backpack",  cost: 5},
+    {name: "Crossbow bolt (30)",  cost: 10},
     {name:"Crowbar", cost:	10},
+
     {name:"Garlic", cost:	5},
     {name:  "Grappling hook", cost:	25},
     {name:"Hammer (small)", cost:	2},
@@ -18,6 +21,8 @@ const gear: Array<Gear> = [
     {name:"Rope (50’)",	cost: 1},
     {name:"Sack (small)",	cost: 1},
     {name:"Sack (large)",	cost: 2},
+    {name:"Silver tipped arrow", cost:	5},
+    {name:"Sling stones", cost:	0},
     {name:"Stakes (3) and mallet", cost:	3},
     {name:"Thieves’ tools", 	cost: 25},
     {name:"Tinder box (flint & steel)",	cost: 3},
@@ -25,6 +30,7 @@ const gear: Array<Gear> = [
     {name:"Waterskin",	cost: 1},
     {name:"Wine (2 pints)",	cost: 1},
     {name:"Wolfsbane (1 bunch)", cost: 	10},
+    
 ]
 
 export default gear;
