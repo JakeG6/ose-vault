@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Field, Form, Formik, useFormikContext } from 'formik';
 import gear from '../../gear';
+import weapons from '../../weapons';
+import { Gear, Weapon } from '../../types';
+import allEquipment from './allEquipment';
 
 
 let chance = require('chance').Chance();
@@ -12,6 +15,10 @@ const ChooseEquipment = (props: any) => {
 
     const values:any= formikProps.values;
 
+    const [searchField, setSearchField] = useState("");
+    const [searchShow, setSearchShow] = useState(false); 
+
+
 
     const randStartingGold = () =>  {
 
@@ -22,8 +29,45 @@ const ChooseEquipment = (props: any) => {
         props.setPageData({...props.pageData, hasRolledGP: true});
     }
 
+    const handleChange = (e: any) => {
+        setSearchField(e.target.value);
+        if(e.target.value===""){
+          setSearchShow(false);
+        }
+        else {
+          setSearchShow(true);
+        }
+      };
+
     const searchEquipment = (query:string) => {
-        const equipmentArr = [...gear];
+        
+    }
+
+    const filteredEquipment = allEquipment.filter((equipment: Gear | Weapon) => {
+        return (equipment.name.toLowerCase().includes(searchField.toLowerCase()))
+    })
+
+    const searchResults = () => {
+        if (searchShow) {
+            console.log(values.charMoney)
+            return filteredEquipment.map((equipment: Gear | Weapon) => 
+            <div className="flex">
+                <div>
+                    <button type="button" className={equipment.cost > values.charMoney.gp ?  "text-rose-500" : ""}>+</button>
+                </div>
+                <div className="ml-2">
+                    <p>{equipment.name}</p>
+                    <p>{equipment.cost} GP</p>
+                </div>
+                
+            </div>
+        )
+        }
+        
+        else {
+            <div></div>
+        }
+        
     }
        
     
@@ -45,13 +89,13 @@ const ChooseEquipment = (props: any) => {
                 <div>
                     <p>Equipment</p>
                     <div className='rounded-md border-black h-20'>
-
+                        
                     </div>
                 </div>
                 <div>
                     <label htmlFor="">Search Equipment</label>
-                    <input type="search" id="site-search" name="q" aria-label="Search through site content" />
-
+                    <input type="search" onChange = {handleChange} id="equipment-search" />
+                    <div>{searchResults()}</div>
                 </div>
             </div>
         </div>

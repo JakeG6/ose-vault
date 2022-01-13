@@ -5,7 +5,6 @@ const gear: Array<Gear> = [
     {name: "Backpack",  cost: 5},
     {name: "Crossbow bolt (30)",  cost: 10},
     {name:"Crowbar", cost:	10},
-
     {name:"Garlic", cost:	5},
     {name:  "Grappling hook", cost:	25},
     {name:"Hammer (small)", cost:	2},
