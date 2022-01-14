@@ -43,17 +43,54 @@ const ChooseEquipment = (props: any) => {
         
     }
 
+    const buyEquipment = (addedEquipment: Gear | Weapon) => {
+        formikProps.setFieldValue("equipment", [...values.equipment , addedEquipment]);
+
+    }
+
+    const returnEquipment = (returnedEquipment: Gear | Weapon) => {
+
+        const equipmentArr: (Gear | Weapon)[] = values.equipment.filter((equipment: Gear | Weapon) => 
+            values.equipment.indexOf(equipment) !== values.equipment.indexOf(returnedEquipment)
+        )
+
+        console.log(equipmentArr)
+
+        // formikProps.setFieldValue("equipment", equipmentArr);
+        formikProps.setValues({ ...values, "equipment": equipmentArr, charmoney: {...values.charMoney, gp: values.charMoney.gp - returnedEquipment.cost} });
+
+
+    }
+
+    const deleteEquipment = (equipmentToDelete: Gear | Weapon) => {
+
+        console.log(values.equipment)
+
+        const equipmentArr: (Gear | Weapon)[] = values.equipment.filter((equipment: Gear | Weapon) => 
+        values.equipment.indexOf(equipment) !== values.equipment.indexOf(equipmentToDelete))
+
+        console.log(equipmentArr)
+
+        formikProps.setFieldValue("equipment", equipmentArr);
+
+    }
+
     const filteredEquipment = allEquipment.filter((equipment: Gear | Weapon) => {
         return (equipment.name.toLowerCase().includes(searchField.toLowerCase()))
     })
 
     const searchResults = () => {
         if (searchShow) {
-            console.log(values.charMoney)
             return filteredEquipment.map((equipment: Gear | Weapon) => 
             <div className="flex">
                 <div>
-                    <button type="button" className={equipment.cost > values.charMoney.gp ?  "text-rose-500" : ""}>+</button>
+                    <button 
+                        type="button" 
+                        onClick={() => buyEquipment(equipment)}
+                        className={equipment.cost > values.charMoney.gp ?  "text-rose-500" : ""}
+                    >
+                        +
+                    </button>
                 </div>
                 <div className="ml-2">
                     <p>{equipment.name}</p>
@@ -70,9 +107,6 @@ const ChooseEquipment = (props: any) => {
         
     }
        
-    
-
-
     return (
         <div>
             <p>Choose Equipment</p>
@@ -89,7 +123,28 @@ const ChooseEquipment = (props: any) => {
                 <div>
                     <p>Equipment</p>
                     <div className='rounded-md border-black h-20'>
-                        
+                        {
+                            values.equipment.map((equipment: Gear | Weapon) => 
+                            <div className="border-2" >
+                                <div className="ml-2">
+                                    <p>{equipment.name}</p>
+                                    <button 
+                                        type="button" 
+                                        onClick={() => deleteEquipment(equipment)}
+                                    >
+                                        Delete Equipment
+                                    </button>
+                                    <button 
+                                        type="button" 
+                                        onClick={() => returnEquipment(equipment)}
+                                    >
+                                        Sell Equipment
+                                    </button>
+                                </div>
+                                
+                            </div>
+                            )
+                        }
                     </div>
                 </div>
                 <div>
