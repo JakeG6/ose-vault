@@ -16,7 +16,8 @@ interface Armor {
     name: string,
     AC: number,
     cost: number,
-    weight: number
+    weight: number,
+    isShield?: boolean
 }
 
 interface CharMoney {

@@ -14,17 +14,37 @@ const ChooseClass = () => {
         <div>
 
             <p>Character Class</p>
-
-            <label htmlFor="class">Class</label>
-            <Field as="select" name="class">
-                <option  value="cleric">Cleric</option>
-                <option disabled={values.abilityScores.con < 9} value="dwarf">Dwarf</option>
-                <option disabled={values.abilityScores.int < 9} value="elf">Elf</option>
-                <option value="fighter">Fighter</option>
-                <option disabled={values.abilityScores.con >= 9 && values.abilityScores.dex >= 9} value="halfling">Halfling</option>
-                <option value="magic-user">Magic-User</option>
-                <option value="thief">Thief</option>
-            </Field>
+            <div>
+                <label htmlFor="cleric">
+                <Field type="radio" name="class" value="cleric" />
+                    Cleric
+                </label>
+                <label htmlFor="dwarf">
+                    <Field disabled={values.abilityScores.con < 9} type="radio" name="class" value="dwarf" />
+                    Dwarf
+                </label>
+                <label htmlFor="elf">
+                    <Field disabled={values.abilityScores.int < 9} type="radio" name="class" value="elf" />
+                    Elf
+                </label>
+                <label htmlFor="fighter">
+                    <Field type="radio" name="class" value="fighter" />
+                    Fighter
+                </label>
+                <label htmlFor="halfling">
+                    <Field disabled={values.abilityScores.con >= 9 && values.abilityScores.dex >= 9} type="radio" name="class" value="halfling" />
+                    Halfling
+                </label>
+                <label htmlFor="magic-user">
+                    <Field  type="radio" name="class" value="magic-user" />
+                    Magic-User
+                </label>
+                <label htmlFor="thief">
+                    <Field  type="radio" name="class" value="thief" />
+                    Thief
+                </label>
+                
+            </div>
             <div>
                 <p>Class Blurb goes here</p>
             </div>

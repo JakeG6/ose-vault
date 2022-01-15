@@ -44,7 +44,12 @@ const ChooseEquipment = (props: any) => {
     }
 
     const buyEquipment = (addedEquipment: Gear | Weapon) => {
-        formikProps.setFieldValue("equipment", [...values.equipment , addedEquipment]);
+        // formikProps.setFieldValue("equipment", [...values.equipment , addedEquipment]);
+        formikProps.setValues({ 
+            ...values, 
+            equipment: [...values.equipment , addedEquipment] , 
+            charMoney: {...values.charMoney, gp: values.charMoney.gp - addedEquipment.cost} 
+        });
 
     }
 
@@ -57,7 +62,7 @@ const ChooseEquipment = (props: any) => {
         console.log(equipmentArr)
 
         // formikProps.setFieldValue("equipment", equipmentArr);
-        formikProps.setValues({ ...values, "equipment": equipmentArr, charmoney: {...values.charMoney, gp: values.charMoney.gp - returnedEquipment.cost} });
+        formikProps.setValues({ ...values, "equipment": equipmentArr, charMoney: {...values.charMoney, gp: values.charMoney.gp + returnedEquipment.cost} });
 
 
     }
@@ -87,6 +92,7 @@ const ChooseEquipment = (props: any) => {
                     <button 
                         type="button" 
                         onClick={() => buyEquipment(equipment)}
+                        disabled={values.charMoney.gp < equipment.cost}
                         className={equipment.cost > values.charMoney.gp ?  "text-rose-500" : ""}
                     >
                         +
