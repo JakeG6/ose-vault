@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import defaultCharSheet from './defaultCharSheet';
 import { Field, Form, Formik } from 'formik';
 import AbilityScoreGen from './AbilityScoreGen';
-import ChooseClass from './ChooseClass';
+import ChooseClass from './ChooseClass/ChooseClass';
 import HitPointGen from './HitPointGen';
 import AlignmentAndLanguages from './AlignmentAndLanguages';
 import CharGenOptions from './CharGenOptions';
