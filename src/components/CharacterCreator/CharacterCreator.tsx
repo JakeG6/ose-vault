@@ -9,6 +9,7 @@ import CharGenOptions from './CharGenOptions';
 import CharSummary from './CharSummary';
 import ChooseSpell from './ChooseSpell';
 import ChooseEquipment from './ChooseEquipment';
+import isChargenPropDisabled from './isChargenProgDisabled';
 
 const CharacterCreator = () => {
 
@@ -27,11 +28,11 @@ const CharacterCreator = () => {
       case 3:
         return <HitPointGen pageData={pageData} setPageData={setPageData}  />;
       case 4:
-        return <AlignmentAndLanguages  />;
+        return <ChooseEquipment pageData={pageData} setPageData={setPageData}  />;
       case 5:
         return <ChooseSpell  />;
       case 6:
-        return <ChooseEquipment pageData={pageData} setPageData={setPageData}  />;
+        return <AlignmentAndLanguages  />;
       case 7:
         return <CharSummary  />;
       default:
@@ -40,7 +41,7 @@ const CharacterCreator = () => {
   }
 
   return (
-    <div className="h-96 min-h-full px-8 bg-cyan-200 ">
+    <div className="">
                 
       <Formik
         initialValues={defaultCharSheet}
@@ -50,19 +51,44 @@ const CharacterCreator = () => {
           actions.setSubmitting(false);
         }}
         enableReinitialize={true}
-
       >
-        <Form >
-          <div className="bg-gray-50">
-            {displayFormStep(formStep)}
-          </div>
-          
-        </Form>
+        {props => (
+          <Form >
+            <div className="bg-gray-50 h-96   px-8">
+              {displayFormStep(formStep)}
+            </div>
+            <div className="flex justify-between ">
+          { 
+            formStep !== 0 ? 
+              <button 
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" 
+                type="button"
+                onClick={() => setFormStep(formStep - 1)}
+
+              >
+                back
+              </button> 
+              : 
+              <div></div> 
+          }
+          { 
+          formStep + 1 !== 8 ? 
+            <button 
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" 
+              type="button"
+              disabled={isChargenPropDisabled(formStep, pageData, props.values)}
+              onClick={() => setFormStep(formStep + 1)}
+              
+            >
+              next
+            </button> 
+            : 
+            <div></div> }
+        </div>
+          </Form>
+        )}
       </Formik>
-      <div className="flex justify-between ">
-        { formStep !== 0 ? <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={() => setFormStep(formStep - 1)}>back</button> : <div></div> }
-        { formStep + 1 !== 8 ? <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={() => setFormStep(formStep + 1)}>next</button> : <div></div> }
-      </div>
+      
     </div>
   );
 

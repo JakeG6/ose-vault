@@ -36,3 +36,9 @@
     transform: rotate(360deg);
   }
 }
+
+.leather-background {
+  background-color: #4a0000;
+  background-image: url("https://www.transparenttextures.com/patterns/leather.png");
+/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+}

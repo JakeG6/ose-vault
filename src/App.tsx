@@ -6,17 +6,19 @@ import Home from './components/CharacterCreator/Home';
 
 function App() {
   return (
-    <div className=" grid  ">
-      <h1>OSE Character Vault</h1>
-      <nav className="bg-lime-100">
-        <Link to="/">home</Link> |{" "}
-        <Link to="/chargen">Character Creator</Link> |{" "}
+    <div className=" leather-background min-h-screen ">
+      <h1 className="text-white">OSE Character Vault</h1>
+      <nav className="bg-lime-100 flex ">
+        <Link className="text-2xl ml-2 mr-2" to="/">Home</Link>
+        <Link className="text-2xl ml-2 mr-2" to="/chargen">Character Creator</Link>
+        <Link className="text-2xl ml-2 mr-2" to="#">My Characters</Link>
       </nav>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="chargen" element={<CharacterCreator />} />
-      </Routes>
-      {/* <CharacterCreator /> */}
+      <div className="">
+        <Routes >
+          <Route path="/" element={<Home />} />
+          <Route path="chargen" element={<CharacterCreator />} />
+        </Routes>
+      </div>
     </div>
   );
 }

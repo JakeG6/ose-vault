@@ -44,8 +44,8 @@ const ChooseClass = () => {
         <div>
 
             <p className="text-3xl font-bold underline">Character Class</p>
-            <div className="grid grid-cols-2">        
-                <div className="grid grid-cols-1">
+            <div className="grid grid-cols-1 lg:grid-cols-2">        
+                <div className="container grid grid-cols-1">
                     <label htmlFor="cleric">
                     <Field type="radio" name="class" value="cleric" />
                         Cleric
@@ -76,7 +76,7 @@ const ChooseClass = () => {
                     </label>
                     
                 </div>
-                <div>
+                <div >
                     {setClassBlurb(values.class)}
                 </div>
             </div>
