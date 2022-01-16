@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import defaultCharSheet from './defaultCharSheet';
 import { Field, Form, Formik } from 'formik';
-import AbilityScoreGen from './AbilityScoreGen';
+import AbilityScoreGen from './AbilityScoreGen/AbilityScoreGen';
 import ChooseClass from './ChooseClass/ChooseClass';
 import HitPointGen from './HitPointGen';
 import AlignmentAndLanguages from './AlignmentAndLanguages';
@@ -38,7 +38,7 @@ const CharacterCreator = () => {
   }
 
   return (
-    <div className="px-8 bg-cyan-200 ">
+    <div className="h-96 px-8 bg-cyan-200 ">
                 
       <Formik
         initialValues={defaultCharSheet}

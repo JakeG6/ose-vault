@@ -1,7 +1,7 @@
 const FighterBlurb = () => {
     return (
         <div>
-            <h2>Fighter</h2>
+            <h2 className="text-2xl">Fighter</h2>
             <p><b>Requirements:</b> None</p>
             <p><b>Prime requisite:</b> STR</p>
             <p><b>Hit Dice:</b> 1d8</p>
