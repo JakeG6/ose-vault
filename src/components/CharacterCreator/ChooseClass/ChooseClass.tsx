@@ -21,36 +21,29 @@ const ChooseClass = () => {
 
         switch (className) {
             case 'cleric':
-              return ClericBlurb()
-              break;
+              return ClericBlurb();
             case 'dwarf':
-                return DwarfBlurb()
-              break;
+                return DwarfBlurb();
             case 'elf':
-              return ElfBlurb()
-              break;
+              return ElfBlurb();
             case 'fighter':
-                return FighterBlurb()
-                break;
+                return FighterBlurb();
             case 'halfling':
-                return HalflingBlurb()
-                break;
+                return HalflingBlurb();
             case 'magic-user':
-                return MagicUserBlurb()
-                break;
+                return MagicUserBlurb();
             case 'thief':
-                return ThiefBlurb()
-                break;
+                return ThiefBlurb();
             default:
               return (<div></div>)
-          }
+        }
 
     }
 
     return (
         <div>
 
-            <p>Character Class</p>
+            <p className="text-3xl font-bold underline">Character Class</p>
             <div className="grid grid-cols-2">        
                 <div className="grid grid-cols-1">
                     <label htmlFor="cleric">

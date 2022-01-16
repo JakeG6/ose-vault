@@ -11,7 +11,7 @@ const CharSummary = () => {
         <div>
             <p>Summary</p>
             <div>coming soon</div>
-            <button type="submit">Submit</button>
+            <button className="bg-green-50 hover:bg-green-100 text-black font-bold py-2 px-4 rounded-none" type="submit">Submit</button>
         </div>
     )
 }

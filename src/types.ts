@@ -40,7 +40,17 @@ interface CharSheet {
     hp: number,
     abilityScores: AbilityScores,
     charMoney: CharMoney,
-    equipment: (Gear|Weapon|Armor)[]
+    equipment: (Gear|Weapon|Armor)[],
+    spellsKnown: (Spell)[]
+}
+
+interface Spell {
+    class: string,
+    level: number,
+    duration: string,
+    range: string,
+    description: string
+
 }
 
 interface Weapon {
@@ -56,5 +66,6 @@ export {
     Armor,
     Gear,
     CharSheet,
+    Spell,
     Weapon
 }

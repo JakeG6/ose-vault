@@ -29,7 +29,7 @@ const AlignmentAndLanguages = () => {
     return (
         <div>
 
-            <p>Alignment and Languages</p>
+            <p className="text-3xl font-bold underline">Alignment and Languages</p>
             <label htmlFor="firstName">Name</label>
             <Field id="name" name="name" placeholder="Name" />
 

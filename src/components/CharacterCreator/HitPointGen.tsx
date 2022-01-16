@@ -67,16 +67,26 @@ const HitPointGen = (props: any) => {
 
     return (
         <div>
-            <p>Starting Hit Points</p>
-            <button type="button" onClick={() => randStartingHitPoints(values.abilityScores.con, values.class)}>Roll Starting Hit Points</button>
-            <label htmlFor="hp">Hit Points</label>
+            <p className="text-3xl font-bold underline">Starting Hit Points</p>
+            <button 
+                type="button" 
+                onClick={() => randStartingHitPoints(values.abilityScores.con, values.class)}
+                className="bg-green-50 hover:bg-green-100 text-black font-bold py-2 px-4 rounded-none"
+            >
+                Roll Starting Hit Points
+            </button>
+            <label htmlFor="hp">
+            Hit Points
             <Field 
+                className="ml-2 pl-2 w-11"
                 disabled={!props.pageData.hasRolledHP} 
                 type="number" 
                 min={Math.max(1, 1 + getConMod(values.abilityScores.con))} 
                 id="hp" 
                 name="hp"  
             />
+                </label>
+            
 
         </div>
     )

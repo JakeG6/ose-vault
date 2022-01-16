@@ -115,8 +115,13 @@ const ChooseEquipment = (props: any) => {
        
     return (
         <div>
-            <p>Choose Equipment</p>
-            <button type="button" onClick={() => randStartingGold()}>Roll Starting Gold Pieces</button>
+            <p className="text-3xl font-bold underline">Choose Equipment</p>
+            <button type="button" 
+                className="bg-green-50 hover:bg-green-100 text-black font-bold py-2 px-4 rounded-none"
+                onClick={() => randStartingGold()}
+            >
+                Roll Starting Gold Pieces
+            </button>
             <label htmlFor="gp">GP</label>
             <Field 
                 disabled={!props.pageData.hasRolledGP} 

@@ -67,37 +67,37 @@ const AbilityScoreGen = (props: any) => {
     return (
         <div>
             <p className="text-3xl font-bold underline">Ability Scores</p>
-            <button type="button" onClick={() => rollAbilityScores()} className='rounded-none bg-green-50'>
+            <button type="button" className="bg-green-50 hover:bg-green-100 text-black font-bold py-2 px-4 rounded-none" onClick={() => rollAbilityScores()} >
                 Roll Ability Scores
             </button>
             <div className="bg-rose-200 grid grid-cols-2" >
                 <div  >
-                    <div onClick={() => setAbilityOnFocus('str')}>
-                        <label htmlFor="abilityScores.str">Strength</label>
-                        <Field className="w-10" disabled={!props.pageData.hasRolledScores} type="number" min="3" max="18" id="str" name="abilityScores.str"  />
+                    <div className="w-48 bg-green-100 flex content-between" onClick={() => setAbilityOnFocus('str')}>
+                        <label  htmlFor="abilityScores.str">Strength</label>
+                        <Field className="w-9" disabled={!props.pageData.hasRolledScores} type="number" min="3" max="18" id="str" name="abilityScores.str"  />
                     </div>
                     <div onClick={() => setAbilityOnFocus('dex')}>
                         <label htmlFor="abilityScores.dex">Dexterity</label>
-                        <Field className="w-10" disabled={!props.pageData.hasRolledScores} type="number" min="3" max="18" id="dex" name="abilityScores.dex"  />
+                        <Field className="w-9" disabled={!props.pageData.hasRolledScores} type="number" min="3" max="18" id="dex" name="abilityScores.dex"  />
 
                     </div>
                     <div onClick={() => setAbilityOnFocus('con')}>
                         <label htmlFor="abilityScores.con">Constitution</label>
-                        <Field className="w-10" disabled={!props.pageData.hasRolledScores} type="number" min="3" max="18" id="con" name="abilityScores.con"  />
+                        <Field className="w-9" disabled={!props.pageData.hasRolledScores} type="number" min="3" max="18" id="con" name="abilityScores.con"  />
 
                     </div>
                     <div onClick={() => setAbilityOnFocus('int')}>
                         <label htmlFor="abilityScores.int">Intelligence</label>
-                        <Field className="w-10" disabled={!props.pageData.hasRolledScores} type="number" min="3" max="18" id="int" name="abilityScores.int"  />
+                        <Field className="w-9" disabled={!props.pageData.hasRolledScores} type="number" min="3" max="18" id="int" name="abilityScores.int"  />
                     </div>
                     <div onClick={() => setAbilityOnFocus('wis')}>
                         <label htmlFor="abilityScores.wis">Wisdom</label>
-                        <Field className="w-10" disabled={!props.pageData.hasRolledScores} type="number" min="3" max="18" id="wis" name="abilityScores.wis"  />
+                        <Field className="w-9" disabled={!props.pageData.hasRolledScores} type="number" min="3" max="18" id="wis" name="abilityScores.wis"  />
 
                     </div>
                     <div onClick={() => setAbilityOnFocus('cha')}>
                         <label htmlFor="abilityScores.cha">Charisma</label>
-                        <Field className="w-10" disabled={!props.pageData.hasRolledScores} type="number" min="3" max="18" id="cha" name="abilityScores.cha"  />
+                        <Field className="w-9" disabled={!props.pageData.hasRolledScores} type="number" min="3" max="18" id="cha" name="abilityScores.cha"  />
 
                     </div>
                 </div>

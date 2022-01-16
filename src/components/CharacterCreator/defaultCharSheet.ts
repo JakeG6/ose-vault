@@ -24,7 +24,8 @@ const defaultCharSheet: CharSheet = {
         ep: 0,
         pp: 0
     },
-    equipment: []
+    equipment: [],
+    spellsKnown: []
  
 }
 
