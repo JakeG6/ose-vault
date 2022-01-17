@@ -7,7 +7,7 @@ const defaultCharSheet: CharSheet = {
     level: 1,
     alignment: 'neutral',
     languages: ['common'],
-    ac: 9,
+    ac: 10,
     hp: 1,
     abilityScores: {
         str: 3,

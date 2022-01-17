@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import { Field, Form, Formik, useFormikContext } from 'formik';
-
-
+import strModifiers from './strModifiers';
+import chaModifiers from './chaModifiers';
+import conModifiers from './conModifiers';
+import dexModifiers from './dexModifiers';
+import intModifiers from './intModifiers';
+import wisModifiers from './wisModifiers';
 
 
 const CharSummary = () => {
@@ -10,7 +14,13 @@ const CharSummary = () => {
     const formikProps = useFormikContext()
 
     const values:any= formikProps.values;
-    
+
+    const strMods = strModifiers(values.abilityScores.str)
+    const dexMods = dexModifiers(values.abilityScores.dex)
+    const conMods = conModifiers(values.abilityScores.con)
+    const intMods = intModifiers(values.abilityScores.int)
+    const wisMods = wisModifiers(values.abilityScores.wis)
+    const chaMods = chaModifiers(values.abilityScores.cha)
 
     return (
         <div>
@@ -58,12 +68,9 @@ const CharSummary = () => {
                 <div className="grid grid-cols-2">
                     <div>
                         <p>Combat</p>
-                        <div className="grid grid-cols-2">
+                        <div className="">
                             <div>
                                 <p>HP {values.hp}</p>
-                            </div>
-                            <div>
-                                <p>CON Modifier</p>
                             </div>
                         </div>
                         <div className="grid grid-cols-2">
@@ -71,24 +78,11 @@ const CharSummary = () => {
                                 <p>AC {values.ac}</p>
                             </div>
                             <div>
-                                <p>Unarmored AC</p>
-                                <p>DEX Modifier</p>
+                                <p>Unarmored AC {10 + dexMods.acBonus}</p>
                             </div>
                         </div>
                         <div>
-                            <p>Attack Value Matrix</p>
-                            <div className="flex">
-                                <div>9</div>
-                                <div>8</div>
-                                <div>7</div>
-                                <div>6</div>
-                                <div>5</div>
-                                <div>4</div>
-                                <div>3</div>
-                                <div>2</div>
-                                <div>1</div>
-                                <div>0</div>
-                            </div>
+                            <p>THAC0</p>
                         </div>
                         <div>
                             <p>Abilities, Skills, Weapons</p>

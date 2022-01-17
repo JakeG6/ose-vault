@@ -43,6 +43,13 @@ interface CharSheet {
     equipment: (Gear|Weapon|Armor)[],
     spellsKnown: (Spell)[]
 }
+interface SavingThrows {
+    d: number,
+    w: number,
+    p: number,
+    b: number,
+    s: number
+}
 
 interface Spell {
     class: string,
@@ -66,6 +73,7 @@ export {
     Armor,
     Gear,
     CharSheet,
+    SavingThrows,
     Spell,
     Weapon
 }
