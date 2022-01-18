@@ -25,7 +25,8 @@ const defaultCharSheet: CharSheet = {
         pp: 0
     },
     equipment: [],
-    spellsKnown: []
+    spellsKnown: [],
+    wornArmor: {name: "unarmed", type: "armor", weight: 0, cost: 0, ac:10}
  
 }
 

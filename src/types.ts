@@ -10,6 +10,12 @@ interface AbilityScores {
 interface Gear {
     name: string,
     cost: number,
+    type?:string,
+    damage?: string,
+    ac?: number,
+    weight?:number,
+    isShield?:boolean
+    qualities?: Array<string>
 }
 
 interface Armor {
@@ -40,8 +46,9 @@ interface CharSheet {
     hp: number,
     abilityScores: AbilityScores,
     charMoney: CharMoney,
-    equipment: (Gear|Weapon|Armor)[],
-    spellsKnown: (Spell)[]
+    equipment: (Gear)[],
+    spellsKnown: (Spell)[],
+    wornArmor: Gear | undefined
 }
 interface SavingThrows {
     d: number,

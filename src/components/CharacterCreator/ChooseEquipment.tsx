@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Field, Form, Formik, useFormikContext } from 'formik';
-import gear from '../../gear';
-import weapons from '../../weapons';
-import { Gear, Weapon } from '../../types';
+import { Armor, Gear, Weapon } from '../../types';
 import allEquipment from './allEquipment';
+import dexModifiers from './dexModifiers';
 
 
 let chance = require('chance').Chance();
@@ -18,7 +17,11 @@ const ChooseEquipment = (props: any) => {
     const [searchField, setSearchField] = useState("");
     const [searchShow, setSearchShow] = useState(false); 
 
-
+    // useEffect(() => {
+    //     if (!values.equipment.includes(values.wornArmor) ) {
+    //         formikProps.setFieldValue("wornArmor", undefined);
+    //     }
+    // },[values])
 
     const randStartingGold = () =>  {
 
@@ -43,7 +46,7 @@ const ChooseEquipment = (props: any) => {
         
     }
 
-    const buyEquipment = (addedEquipment: Gear | Weapon) => {
+    const buyEquipment = (addedEquipment: Gear) => {
         // formikProps.setFieldValue("equipment", [...values.equipment , addedEquipment]);
         formikProps.setValues({ 
             ...values, 
@@ -53,9 +56,14 @@ const ChooseEquipment = (props: any) => {
 
     }
 
-    const returnEquipment = (returnedEquipment: Gear | Weapon) => {
+    const removeArmor = () => {
+        console.log(values)
+        formikProps.setFieldValue("wornArmor", undefined)
+    }
 
-        const equipmentArr: (Gear | Weapon)[] = values.equipment.filter((equipment: Gear | Weapon) => 
+    const returnEquipment = (returnedEquipment: Gear ) => {
+
+        const equipmentArr: (Gear)[] = values.equipment.filter((equipment: Gear) => 
             values.equipment.indexOf(equipment) !== values.equipment.indexOf(returnedEquipment)
         )
 
@@ -67,11 +75,11 @@ const ChooseEquipment = (props: any) => {
 
     }
 
-    const deleteEquipment = (equipmentToDelete: Gear | Weapon) => {
+    const deleteEquipment = (equipmentToDelete: Gear ) => {
 
         console.log(values.equipment)
 
-        const equipmentArr: (Gear | Weapon)[] = values.equipment.filter((equipment: Gear | Weapon) => 
+        const equipmentArr: (Gear )[] = values.equipment.filter((equipment: Gear ) => 
         values.equipment.indexOf(equipment) !== values.equipment.indexOf(equipmentToDelete))
 
         console.log(equipmentArr)
@@ -80,13 +88,13 @@ const ChooseEquipment = (props: any) => {
 
     }
 
-    const filteredEquipment = allEquipment.filter((equipment: Gear | Weapon) => {
+    const filteredEquipment = allEquipment.filter((equipment: Gear ) => {
         return (equipment.name.toLowerCase().includes(searchField.toLowerCase()))
     })
 
     const searchResults = () => {
         if (searchShow) {
-            return filteredEquipment.map((equipment: Gear | Weapon) => 
+            return filteredEquipment.map((equipment: Gear) => 
             <div className="flex">
                 <div>
                     <button 
@@ -112,6 +120,17 @@ const ChooseEquipment = (props: any) => {
         }
         
     }
+
+    const wearArmor = (equipment: Gear) => {
+        if (equipment.hasOwnProperty("ac")) {
+            console.log(values)
+
+            formikProps.setFieldValue("wornArmor", equipment);
+            console.log(values.wornArmor)
+
+        }
+        else {return;}
+    }
        
     return (
         <div>
@@ -130,12 +149,13 @@ const ChooseEquipment = (props: any) => {
                 id="charMoney.gp" 
                 name="charMoney.gp"  
             />
+            <p>Armor Class {(values.wornArmor ? values.wornArmor.ac : 10) + dexModifiers(values.abilityScores.dex).acBonus}</p>
             <div className="grid grid-cols-2">
                 <div>
                     <p>Equipment</p>
                     <div className='rounded-md border-black h-20'>
                         {
-                            values.equipment.map((equipment: Gear | Weapon) => 
+                            values.equipment.map((equipment: Gear) => 
                             <div className="border-2" >
                                 <div className="ml-2">
                                     <p>{equipment.name}</p>
@@ -151,6 +171,14 @@ const ChooseEquipment = (props: any) => {
                                     >
                                         Sell Equipment
                                     </button>
+                                    {equipment.hasOwnProperty("ac") && 
+                                        <button 
+                                            type="button" 
+                                            onClick={() => wearArmor(equipment)}
+                                        >
+                                        Wear Armor
+                                    </button>
+                                    }
                                 </div>
                                 
                             </div>
