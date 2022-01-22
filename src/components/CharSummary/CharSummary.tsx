@@ -1,34 +1,35 @@
 import React, { useState } from 'react';
 import { Field, Form, Formik, useFormikContext } from 'formik';
-import strModifiers from './strModifiers';
-import chaModifiers from './chaModifiers';
-import conModifiers from './conModifiers';
-import dexModifiers from './dexModifiers';
-import intModifiers from './intModifiers';
-import wisModifiers from './wisModifiers';
+import strModifiers from '../CharacterCreator/strModifiers';
+import chaModifiers from '../CharacterCreator/chaModifiers';
+import conModifiers from '../CharacterCreator/conModifiers';
+import dexModifiers from '../CharacterCreator/dexModifiers';
+import intModifiers from '../CharacterCreator/intModifiers';
+import wisModifiers from '../CharacterCreator/wisModifiers';
 
 
 const CharSummary = () => {
 
     // returns all values and methods from your Formik tag
-    const formikProps = useFormikContext()
+    // const formikProps = useFormikContext()
 
-    const values:any= formikProps.values;
+    // const values:any= formikProps.values;
+    // console.log("char name", values.name)
 
-    const strMods = strModifiers(values.abilityScores.str)
-    const dexMods = dexModifiers(values.abilityScores.dex)
-    const conMods = conModifiers(values.abilityScores.con)
-    const intMods = intModifiers(values.abilityScores.int)
-    const wisMods = wisModifiers(values.abilityScores.wis)
-    const chaMods = chaModifiers(values.abilityScores.cha)
+    // const strMods = strModifiers(values.abilityScores.str)
+    // const dexMods = dexModifiers(values.abilityScores.dex)
+    // const conMods = conModifiers(values.abilityScores.con)
+    // const intMods = intModifiers(values.abilityScores.int)
+    // const wisMods = wisModifiers(values.abilityScores.wis)
+    // const chaMods = chaModifiers(values.abilityScores.cha)
 
     return (
         <div>
-            <p>Summary</p>
+            {/* <p>Summary</p>
             <div className="grid ">
                 <div className="grid grid-cols-2">
                     <div>
-                        <div>PC {values.name}</div>
+                        <div>PC</div>
                         <div className="grid grid-cols-2">
                             <div className="">
                                 <div>Class {values.class}</div>
@@ -109,7 +110,11 @@ const CharSummary = () => {
                 
 
             </div>
-            <button className="bg-green-50 hover:bg-green-100 text-black font-bold py-2 px-4 rounded-none" type="submit">Submit</button>
+            <button 
+                className="bg-green-50 hover:bg-green-100 text-black font-bold py-2 px-4 rounded-none" 
+                type="submit">
+                Submit
+            </button> */}
         </div>
     )
 }

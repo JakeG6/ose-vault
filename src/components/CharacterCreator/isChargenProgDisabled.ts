@@ -1,24 +1,22 @@
-const isChargenPropDisabled = (step:number, pageData: any, values:any) => {
-    switch (step) {
-        case 0:
+const isChargenPropDisabled = (sectionName:string, pageData: any, values:any) => {
+    switch (sectionName) {
+        case "Generator Options":
           return false;
-        case 1:
+        case "Ability Scores":
           return pageData.hasRolledScores ? false : true;
-        case 2:
+        case "Class":
           return values.class !== '' ? false : true;
-        case 3:
+        case "Hit Points":
           return pageData.hasRolledHP ? false : true;
-        case 4: 
+        case "Equipment": 
           return pageData.hasRolledGP ? false : true;
-        case 5:
+        case "Spells":
           return ((values.class === 'elf' || values.class === 'magic-user')  && values.knownSpells.length < 1) ? true : false;
-        case 6:
-          return values.name !== ''? false : true;
-        // case 7:
-        //   return <CharSummary  />;
+        case "Details":
+          return values.name !== '' ? false : true;
         default:
           return true
-      }
+    }
 }
 
 export default isChargenPropDisabled
